@@ -33,7 +33,7 @@ max_tension = 60;
 sprite = spr_hazmat;
 anim = 0;
 canshoot = 0;
-walk = 0;
+walk = 2;
 </string>
           </argument>
         </arguments>
@@ -118,7 +118,7 @@ if (keyboard_check_released(ord('A')) &amp;&amp; vy &lt; 0)
     vy /= 2;
 
 if (vy &gt; -1) {   
-    if (keyboard_check(ord('S'))) {
+    if (keyboard_check(ord('A')) &amp;&amp; place_free(x, y + 1)) {
         if (!audio_is_playing(snd_reel)) {
             audio_play_sound(snd_reel, 0, false);
             audio_sound_pitch(snd_reel, 1 + 2 * (tension / max_tension));
@@ -139,7 +139,7 @@ if (vy &gt; -1) {
 if (vy &gt; 8)
     vy = 8;
     
-if (keyboard_check(ord('D')) &amp;&amp; canshoot &lt;= 0) {
+if (keyboard_check(ord('S')) &amp;&amp; canshoot &lt;= 0) {
     audio_play_sound(snd_shoot, 0, false);
     var bullet = instance_create(x + 8 * facing, y + 11, obj_bullet);
     bullet.image_xscale = facing;
@@ -191,7 +191,7 @@ else {
     else {
         anim += abs(vx) / 16;
         walk += abs(vx) / 16;
-        if (walk &gt;= 2) {
+        if (walk &gt;= 4) {
             audio_play_sound(snd_walk, 0, false);
             walk = 0;
         }

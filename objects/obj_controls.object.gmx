@@ -89,15 +89,16 @@ draw_set_valign(fa_middle);
 var text_size = 1 + 0.05 * sin(pulse * 2 * pi);
 
 draw_set_font(fnt_title);
-draw_text_transformed(room_width / 2, room_height / 4, "Controls", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 5, "Controls", text_size, text_size, 0);
 
 draw_set_font(fnt_controls);
-draw_text_transformed(room_width / 2, room_height / 2 - 32, "Press 'A' to jump", text_size, text_size, 0);
-draw_text_transformed(room_width / 2, room_height / 2, "Hold 'S' to pull yourself upwards#WARNING: Doing this too much will snap the cable and kill you", text_size, text_size, 0);
-draw_text_transformed(room_width / 2, room_height / 2 + 32, "Hold 'D' to shoot", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 2 - 45, "Hold 'Left'/'Right' to move", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 2 - 15, "Press 'A' to jump", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 2 + 15, "Hold 'A' in the air to pull yourself upwards#WARNING: Doing this too much will snap the cable and kill you", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 2 + 45, "Hold 'S' to shoot", text_size, text_size, 0);
 
 draw_set_font(fnt_info);
-draw_text_transformed(room_width / 2, room_height * (3 / 4), "Press 'A' to continue", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height * (4 / 5), "Press 'A' to continue", text_size, text_size, 0);
 </string>
           </argument>
         </arguments>

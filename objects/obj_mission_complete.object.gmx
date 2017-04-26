@@ -92,10 +92,10 @@ draw_set_valign(fa_middle);
 var text_size = 1 + 0.05 * sin(pulse * 2 * pi);
 
 draw_set_font(fnt_title);
-draw_text_transformed(room_width / 2, room_height / 4, "Mission Complete", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 3, "Mission Complete", text_size, text_size, 0);
 
 draw_set_font(fnt_info);
-draw_text_transformed(room_width / 2, room_height * (3 / 4), "Press 'A' to continue", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height * (2 / 3), "Press 'A' to continue", text_size, text_size, 0);
 </string>
           </argument>
         </arguments>
