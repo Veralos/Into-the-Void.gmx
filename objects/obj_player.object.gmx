@@ -86,7 +86,23 @@ instance_create(x, y, obj_dead);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (flash &gt; 0)
+            <string>var left_held = false;
+var right_held = false;
+var jump_held = false;
+var jump_pressed = false;
+var jump_released = false;
+var shoot_held = false;
+
+if (!scr_fading()) {
+    left_held = keyboard_check(vk_left);
+    right_held = keyboard_check(vk_right);
+    jump_held = keyboard_check(ord('A'));
+    jump_pressed = keyboard_check_pressed(ord('A'));
+    jump_released = keyboard_check_released(ord('A'));
+    shoot_held = keyboard_check(ord('S'));
+}
+
+if (flash &gt; 0)
     flash--;
 
 if (reload &gt; 0)
@@ -102,9 +118,9 @@ else if (fire_rate &gt; base_fire) {
     reload = 8;
 }
 
-if (keyboard_check(vk_left))
+if (left_held)
     vx -= 1;
-if (keyboard_check(vk_right))
+if (right_held)
     vx += 1;
 
 if (vx &gt; 0) {
@@ -127,16 +143,16 @@ if (place_free(x, y + 1))
     
 vy += grav;
 
-if (keyboard_check_pressed(ord('A')) &amp;&amp; !place_free(x, y + 1)) {
+if (jump_pressed &amp;&amp; !place_free(x, y + 1)) {
     audio_play_sound(snd_jump, 0, false);
     vy = -7;
 }
     
-if (keyboard_check_released(ord('A')) &amp;&amp; vy &lt; 0)
+if (jump_released &amp;&amp; vy &lt; 0)
     vy /= 2;
 
 if (vy &gt; -1) {   
-    if (keyboard_check(ord('A')) &amp;&amp; place_free(x, y + 1)) {
+    if (jump_held &amp;&amp; place_free(x, y + 1)) {
         if (!audio_is_playing(snd_reel)) {
             audio_play_sound(snd_reel, 0, false);
             audio_sound_pitch(snd_reel, 1 + 2 * (tension / max_tension));
@@ -157,7 +173,7 @@ if (vy &gt; -1) {
 if (vy &gt; 8)
     vy = 8;
     
-if (keyboard_check(ord('S')) &amp;&amp; canshoot &lt;= 0) {
+if (shoot_held &amp;&amp; canshoot &lt;= 0) {
     audio_play_sound(snd_shoot, 0, false);
     var bullet = instance_create(x + 8 * facing, y + 11, obj_bullet);
     bullet.image_xscale = facing;
@@ -193,9 +209,10 @@ else {
 if (y + 16 &gt; obj_background.bottom_level)
     instance_destroy();
     
-if (global.collapse &amp;&amp; place_meeting(x, y + 1, obj_tilewall)) {
+if (global.collapse &amp;&amp; place_meeting(x, y + 1, obj_tilewall) &amp;&amp; !scr_fading()) {
+    audio_play_sound(snd_land_complete, 0, false);
     global.next_room = room_next(room);
-    room_goto(rm_mission_complete);
+    scr_room_goto(rm_mission_complete);
 }
     
 //ANIMATION
