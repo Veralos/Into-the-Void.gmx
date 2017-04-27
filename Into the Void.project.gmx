@@ -47,6 +47,7 @@
     <sprite>sprites\spr_hazmat_run</sprite>
     <sprite>sprites\spr_hazmat_fall</sprite>
     <sprite>sprites\spr_hazmat_jump</sprite>
+    <sprite>sprites\spr_flash</sprite>
     <sprite>sprites\spr_bullet</sprite>
     <sprite>sprites\spr_bullet_flash</sprite>
     <sprite>sprites\spr_enemy_bit</sprite>
