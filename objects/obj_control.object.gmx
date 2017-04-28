@@ -68,7 +68,7 @@ if (!audio_is_playing(snd_level_music))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_restart();
+            <string>scr_room_goto(room);
 </string>
           </argument>
         </arguments>
