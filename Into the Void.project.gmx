@@ -5,8 +5,13 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound">
-    <sound>sound\snd_level_music</sound>
-    <sound>sound\snd_escape_music</sound>
+    <sounds name="music">
+      <sound>sound\snd_level_music</sound>
+      <sound>sound\snd_escape_music</sound>
+      <sound>sound\snd_complete_music</sound>
+      <sound>sound\snd_title_music</sound>
+      <sound>sound\snd_end_music</sound>
+    </sounds>
     <sound>sound\snd_collect</sound>
     <sound>sound\snd_die</sound>
     <sound>sound\snd_enemy_die</sound>
@@ -15,7 +20,6 @@
     <sound>sound\snd_reel</sound>
     <sound>sound\snd_shoot</sound>
     <sound>sound\snd_bullet_hit</sound>
-    <sound>sound\snd_complete_music</sound>
     <sound>sound\snd_charge</sound>
     <sound>sound\snd_launch</sound>
     <sound>sound\snd_stop</sound>
@@ -24,8 +28,6 @@
     <sound>sound\snd_enemy_bullet_hit</sound>
     <sound>sound\snd_confirm</sound>
     <sound>sound\snd_land</sound>
-    <sound>sound\snd_title_music</sound>
-    <sound>sound\snd_end_music</sound>
     <sound>sound\snd_exit</sound>
     <sound>sound\snd_walk</sound>
     <sound>sound\snd_reload</sound>
