@@ -74,6 +74,11 @@ ds_list_add(sound_list,
     snd_error
 );
 
+if (global.sound_on)
+    scr_list_gain(sound_list, 1);
+else
+    scr_list_gain(sound_list, 0);
+
 music_list = ds_list_create();
 ds_list_add(music_list, 
     snd_title_music, 
@@ -82,6 +87,11 @@ ds_list_add(music_list,
     snd_end_music, 
     snd_complete_music
 );
+
+if (global.music_on)
+    scr_list_gain(music_list, 1);
+else
+    scr_list_gain(music_list, 0);
 
 level_list = ds_list_create();
 ds_list_add(level_list, 
@@ -162,7 +172,7 @@ if (confirm_pressed) {
             }
             break;
         case 2:
-            window_set_fullscreen(!window_get_fullscreen());
+            scr_toggle_fullscreen();
             break;
         case 3:
             global.sound_on = !global.sound_on;
@@ -170,6 +180,7 @@ if (confirm_pressed) {
                 scr_list_gain(sound_list, 1);
             else
                 scr_list_gain(sound_list, 0);
+            scr_save_data("sound", global.sound_on);
             break;
         case 4:
             global.music_on = !global.music_on;
@@ -177,9 +188,11 @@ if (confirm_pressed) {
                 scr_list_gain(music_list, 1);
             else
                 scr_list_gain(music_list, 0);
+            scr_save_data("music", global.music_on);
             break;
         case 5:
             global.shake_high = !global.shake_high;
+            scr_save_data("shake", global.shake_high);
             break;
         case 6:
             game_end();

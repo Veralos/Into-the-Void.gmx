@@ -40,8 +40,9 @@ if (instance_number(obj_player) &gt; 0)
 view_xview[0] = view_x + floor(-shake + random(2 * shake));
 view_yview[0] = view_y + floor(-shake + random(2 * shake));
 
-if (keyboard_check_pressed(vk_f4))
-    window_set_fullscreen(!window_get_fullscreen());
+if (keyboard_check_pressed(vk_f4)) {
+    scr_toggle_fullscreen();
+}
     
 if (keyboard_check_pressed(vk_escape) &amp;&amp; ! scr_fading()) {
     audio_stop_all();
@@ -109,10 +110,18 @@ global.collapse = false;
 
 game_surface = -1;
 
-global.sound_on = true;
-global.music_on = true;
-global.shake_high = true;
-global.levels_completed = 0;
+global.filename = "itv_data";
+global.section = "data";
+
+ini_open(global.filename);
+
+window_set_fullscreen(ini_read_real(global.section, "fullscreen", false));
+global.sound_on = ini_read_real(global.section, "sound", true);
+global.music_on = ini_read_real(global.section, "music", true);
+global.shake_high = ini_read_real(global.section, "shake", true);
+global.levels_completed = ini_read_real(global.section, "levels_completed", 0);
+
+ini_close();
 
 room_goto_next();
 </string>

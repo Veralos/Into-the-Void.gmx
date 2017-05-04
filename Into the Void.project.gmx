@@ -72,6 +72,8 @@
     <script>scripts\scr_room_goto.gml</script>
     <script>scripts\scr_fading.gml</script>
     <script>scripts\scr_list_gain.gml</script>
+    <script>scripts\scr_toggle_fullscreen.gml</script>
+    <script>scripts\scr_save_data.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_title</font>
