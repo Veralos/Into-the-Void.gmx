@@ -224,7 +224,7 @@ draw_set_font(fnt_info);
 
 var separation = 24;
 var arrow_width = 96;
-var origin = room_height * (3 / 5) - (ds_list_size(option_list) - 1) * separation / 2;
+var origin = room_height * (3 / 5) - 8 - (ds_list_size(option_list) - 1) * separation / 2;
 
 for (var i = 0; i &lt; ds_list_size(option_list); i++) {
     var text = ds_list_find_value(option_list, i);
@@ -271,6 +271,11 @@ for (var i = 0; i &lt; ds_list_size(option_list); i++) {
     
     draw_set_alpha(1);
 }
+
+draw_set_font(fnt_controls);
+
+draw_text_transformed(room_width / 3, room_height - 16, "Select: 'Up'/'Down'", text_size, text_size, 0);
+draw_text_transformed(room_width * (2 / 3), room_height - 16, "Confirm: 'A'", text_size, text_size, 0);
 </string>
           </argument>
         </arguments>
