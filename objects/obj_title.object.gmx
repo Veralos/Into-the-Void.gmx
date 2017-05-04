@@ -31,6 +31,10 @@ audio_stop_sound(snd_end_music);
 audio_play_sound(snd_title_music, 1, true);
 
 pulse = 0;
+
+option = 0;
+option_list = ds_list_create();
+ds_list_add(option_list, "Play", "Options", "Quit");
 </string>
           </argument>
         </arguments>
@@ -56,10 +60,34 @@ pulse = 0;
             <string>pulse += 0.01;
 if (pulse &gt; 1)
     pulse = 0;
+    
+if (keyboard_check_pressed(vk_up)) {
+    audio_play_sound(snd_select, 0, false);
+    option--;
+}
+if (keyboard_check_pressed(vk_down)) {
+    audio_play_sound(snd_select, 0, false);
+    option++;
+}
+    
+if (option &lt; 0)
+    option = ds_list_size(option_list) - 1;
+if (option &gt; ds_list_size(option_list) - 1)
+    option = 0;
 
 if (keyboard_check_pressed(ord('A')) &amp;&amp; !scr_fading()) {
     audio_play_sound(snd_confirm, 0, false);
-    scr_room_goto(room_next(room));
+    switch (option) {
+        case 0:
+            scr_room_goto(room_next(room));
+            break;
+        case 1:
+            //Options
+            break;
+        case 2:
+            game_end();
+            break;
+    }
 }
 </string>
           </argument>
@@ -96,7 +124,17 @@ draw_set_font(fnt_title);
 draw_text_transformed(room_width / 2, room_height / 3, "Into the Void", text_size, text_size, 0);
 
 draw_set_font(fnt_info);
-draw_text_transformed(room_width / 2, room_height * (2 / 3), "Press 'A' to start", text_size, text_size, 0);
+
+var separation = 24;
+var origin = (ds_list_size(option_list) - 1) * 24 / 2;
+
+for (var i = 0; i &lt; ds_list_size(option_list); i++)
+    draw_text_transformed(room_width / 2, room_height * (2 / 3) - origin + i * separation, ds_list_find_value(option_list, i), text_size, text_size, 0);
+draw_text_transformed(room_width / 2 - 64, room_height * (2 / 3) - origin + option * separation, "&gt;", text_size, text_size, 0);
+draw_text_transformed(room_width / 2 + 64, room_height * (2 / 3) - origin + option * separation, "&lt;", text_size, text_size, 0);
+/*draw_text_transformed(room_width / 2, room_height * (2 / 3) - 24, "Play", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height * (2 / 3), "Options", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height * (2 / 3) + 24, "Quit", text_size, text_size, 0);*/
 </string>
           </argument>
         </arguments>
