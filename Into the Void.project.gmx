@@ -70,6 +70,7 @@
     <script>scripts\scr_inside_view.gml</script>
     <script>scripts\scr_room_goto.gml</script>
     <script>scripts\scr_fading.gml</script>
+    <script>scripts\scr_list_gain.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_title</font>

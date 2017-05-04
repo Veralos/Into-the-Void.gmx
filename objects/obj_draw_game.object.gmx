@@ -25,8 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.collapse)
-    shake = 4;
+            <string>if (global.collapse) {
+    if (global.shake_high)
+        shake = 4;
+    else
+        shake = 2;
+}
 else
     shake = 0;
 
