@@ -105,6 +105,10 @@ global.collapse = false;
 
 game_surface = -1;
 
+global.sound_on = true;
+global.music_on = true;
+global.shake_high = true;
+
 room_goto_next();
 </string>
           </argument>
