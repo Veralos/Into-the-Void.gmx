@@ -132,9 +132,9 @@ var down_pressed = false;
 var confirm_pressed = false;
 
 if (!scr_fading()) {
-    up_pressed = keyboard_check_pressed(vk_up);
-    down_pressed = keyboard_check_pressed(vk_down);
-    confirm_pressed = keyboard_check_pressed(ord('A'));
+    up_pressed = keyboard_check_pressed(vk_up) || global.stick_up;
+    down_pressed = keyboard_check_pressed(vk_down) || global.stick_down;
+    confirm_pressed = keyboard_check_pressed(ord('A')) || gamepad_button_check_pressed(0, gp_face1);
 }
     
 if (up_pressed) {

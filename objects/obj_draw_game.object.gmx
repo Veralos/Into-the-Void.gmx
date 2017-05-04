@@ -25,7 +25,27 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.collapse) {
+            <string>global.stick_right = false;
+global.stick_left = false;
+
+var axis_lh = gamepad_axis_value(0, gp_axislh);
+if (axis_lh &gt; 0 &amp;&amp; prev_h &lt;= 0)
+    global.stick_right = true;
+if (axis_lh &lt; 0 &amp;&amp; prev_h &gt;= 0)
+    global.stick_left = true;
+prev_h = axis_lh;
+    
+global.stick_down = false;
+global.stick_up = false;
+
+var axis_lv = gamepad_axis_value(0, gp_axislv);
+if (axis_lv &gt; 0 &amp;&amp; prev_v &lt;= 0)
+    global.stick_down = true;
+if (axis_lv &lt; 0 &amp;&amp; prev_v &gt;= 0)
+    global.stick_up = true;
+prev_v = axis_lv;
+
+if (global.collapse) {
     if (global.shake_high)
         shake = 4;
     else
@@ -122,6 +142,14 @@ global.shake_high = ini_read_real(global.section, "shake", true);
 global.levels_completed = ini_read_real(global.section, "levels_completed", 0);
 
 ini_close();
+
+gamepad_set_axis_deadzone(0, 0.5);
+prev_h = 0;
+prev_v = 0;
+global.stick_left = false;
+global.stick_right = false;
+global.stick_up = false;
+global.stick_down = false;
 
 room_goto_next();
 </string>
