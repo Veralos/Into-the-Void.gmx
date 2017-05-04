@@ -32,7 +32,11 @@ audio_play_sound(snd_title_music, 1, true);
 
 pulse = 0;
 
-option = 0;
+if (global.levels_completed &gt; 0)
+    option = 1;
+else
+    option = 0;
+
 option_list = ds_list_create();
 ds_list_add(option_list, 
     "Start",
@@ -77,6 +81,15 @@ ds_list_add(music_list,
     snd_escape_music, 
     snd_end_music, 
     snd_complete_music
+);
+
+level_list = ds_list_create();
+ds_list_add(level_list, 
+    rm_test,
+    rm_spiky,
+    rm_bat,
+    rm_launcher,
+    rm_turret
 );
 </string>
           </argument>
@@ -132,11 +145,16 @@ if (confirm_pressed) {
     audio_play_sound(snd_confirm, 0, false);
     switch (option) {
         case 0:
+            global.level = 0;
             scr_room_goto(room_next(room));
             break;
         case 1:
             if (global.levels_completed &gt; 0) {
-                //do something
+                audio_stop_sound(snd_title_music);
+                global.level = global.levels_completed;
+                if (global.level &gt;= ds_list_size(level_list))
+                    global.level = ds_list_size(level_list) - 1;
+                scr_room_goto(ds_list_find_value(level_list, global.level));
             }
             else {
                 audio_stop_sound(snd_confirm);

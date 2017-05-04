@@ -241,6 +241,8 @@ if (y + 16 &gt; obj_background.bottom_level)
     
 if (global.collapse &amp;&amp; place_meeting(x, y + 1, obj_tilewall) &amp;&amp; !scr_fading()) {
     audio_play_sound(snd_land_complete, 0, false);
+    global.level++;
+    global.levels_completed = global.level;
     global.next_room = room_next(room);
     scr_room_goto(rm_mission_complete);
 }
