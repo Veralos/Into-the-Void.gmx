@@ -80,10 +80,10 @@ if (keyboard_check_pressed(ord('A'))) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(make_color_hsv(global.hue, 255, 4));
+            <string>draw_set_color(c_black);
 draw_rectangle(0, 0, room_width, room_height, false);
 
-draw_set_color(make_color_hsv(global.hue, 16, 255));
+draw_set_color(c_white);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 

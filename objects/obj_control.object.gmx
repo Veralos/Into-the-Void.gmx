@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.top = -96;
+            <string>global.hue = 0;
+global.top = -96;
 
 flash = 0;
 
@@ -93,6 +94,14 @@ if (!audio_is_playing(snd_level_music))
             <string>flash++
 if (flash &gt; 30)
     flash = 0;
+
+if (global.collapse)
+    global.hue += 2;
+else
+    global.hue += 0.5;
+
+if (global.hue &gt; 255)
+    global.hue = 0;
 </string>
           </argument>
         </arguments>

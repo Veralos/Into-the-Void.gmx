@@ -26,19 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>if (global.collapse) {
-    global.hue += 2;
     if (global.shake_high)
         shake = 4;
     else
         shake = 2;
 }
-else {
-    global.hue += 0.5;
+else
     shake = 0;
-}
-
-if (global.hue &gt; 255)
-    global.hue = 0;
 
 if (instance_number(obj_player) &gt; 0)
     view_y = obj_player.y - view_hview[0] / 2;
@@ -128,8 +122,6 @@ global.shake_high = ini_read_real(global.section, "shake", true);
 global.levels_completed = ini_read_real(global.section, "levels_completed", 0);
 
 ini_close();
-
-global.hue = 0;
 
 room_goto_next();
 </string>
