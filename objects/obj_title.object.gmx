@@ -35,7 +35,8 @@ pulse = 0;
 option = 0;
 option_list = ds_list_create();
 ds_list_add(option_list, 
-    "Play", 
+    "Start",
+    "Continue",
     "Fullscreen", 
     "Sound", 
     "Music", 
@@ -65,7 +66,8 @@ ds_list_add(sound_list,
     snd_walk,
     snd_reload,
     snd_land_complete,
-    snd_select
+    snd_select,
+    snd_error
 );
 
 music_list = ds_list_create();
@@ -133,26 +135,35 @@ if (confirm_pressed) {
             scr_room_goto(room_next(room));
             break;
         case 1:
-            window_set_fullscreen(!window_get_fullscreen());
+            if (global.levels_completed &gt; 0) {
+                //do something
+            }
+            else {
+                audio_stop_sound(snd_confirm);
+                audio_play_sound(snd_error, 0, false);
+            }
             break;
         case 2:
+            window_set_fullscreen(!window_get_fullscreen());
+            break;
+        case 3:
             global.sound_on = !global.sound_on;
             if (global.sound_on)
                 scr_list_gain(sound_list, 1);
             else
                 scr_list_gain(sound_list, 0);
             break;
-        case 3:
+        case 4:
             global.music_on = !global.music_on;
             if (global.music_on)
                 scr_list_gain(music_list, 1);
             else
                 scr_list_gain(music_list, 0);
             break;
-        case 4:
+        case 5:
             global.shake_high = !global.shake_high;
             break;
-        case 5:
+        case 6:
             game_end();
             break;
     }
@@ -189,7 +200,7 @@ draw_set_valign(fa_middle);
 var text_size = 1 + 0.05 * sin(pulse * 2 * pi);
 
 draw_set_font(fnt_title);
-draw_text_transformed(room_width / 2, room_height / 5, "Into the Void", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 6, "Into the Void", text_size, text_size, 0);
 
 draw_set_font(fnt_info);
 
@@ -201,27 +212,31 @@ for (var i = 0; i &lt; ds_list_size(option_list); i++) {
     var text = ds_list_find_value(option_list, i);
     switch (i) {
         case 1:
+            if (global.levels_completed &lt;= 0)
+                draw_set_alpha(0.5);
+            break;
+        case 2:
             text += ": ";
             if (window_get_fullscreen())
                 text += "On";
             else
                 text += "Off";
         break;
-        case 2:
+        case 3:
             text += ": ";
             if (global.sound_on)
                 text += "On";
             else
                 text += "Off";
         break;
-        case 3:
+        case 4:
             text += ": ";
             if (global.music_on)
                 text += "On";
             else
                 text += "Off";
         break;
-        case 4:
+        case 5:
             text += ": ";
             if (global.shake_high)
                 text += "High";
@@ -235,6 +250,8 @@ for (var i = 0; i &lt; ds_list_size(option_list); i++) {
         scale = 1.5;
         
     draw_text_transformed(room_width / 2, origin + i * separation, text, text_size * scale, text_size * scale, 0);
+    
+    draw_set_alpha(1);
 }
 </string>
           </argument>

@@ -112,6 +112,7 @@ game_surface = -1;
 global.sound_on = true;
 global.music_on = true;
 global.shake_high = true;
+global.levels_completed = 0;
 
 room_goto_next();
 </string>
