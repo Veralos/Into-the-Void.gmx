@@ -51,8 +51,13 @@
             <string>pulse += 0.01;
 if (pulse &gt; 1)
     pulse = 0;
+    
+var continue_pressed = false;
 
-if (keyboard_check_pressed(ord('A')) &amp;&amp; !scr_fading()) {
+if (!scr_fading())
+    continue_pressed = keyboard_check_pressed(ord('A')) || gamepad_button_check_pressed(0, gp_face1);
+
+if (continue_pressed) {
     audio_stop_sound(snd_title_music);
     audio_play_sound(snd_confirm, 0, false);
     scr_room_goto(room_next(room));

@@ -63,8 +63,13 @@ view_yview[0] = view_y + floor(-shake + random(2 * shake));
 if (keyboard_check_pressed(vk_f4)) {
     scr_toggle_fullscreen();
 }
+
+var exit_pressed = false;
+
+if (!scr_fading())
+    exit_pressed = keyboard_check_pressed(vk_escape) || gamepad_button_check(0, gp_face2);
     
-if (keyboard_check_pressed(vk_escape) &amp;&amp; ! scr_fading()) {
+if (exit_pressed) {
     audio_stop_all();
     audio_play_sound(snd_exit, 0, false);
     if (room = rm_title)
