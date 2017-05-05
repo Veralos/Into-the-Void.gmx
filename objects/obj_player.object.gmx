@@ -174,7 +174,7 @@ if (jump_pressed &amp;&amp; !place_free(x, y + 1)) {
 }
     
 if (jump_released &amp;&amp; vy &lt; 0)
-    vy /= 2;
+    vy /= 3;
     
 if (jump_held &amp;&amp; !can_cable)
     alarm[0] = 2;
@@ -208,7 +208,7 @@ if (shoot_held &amp;&amp; canshoot &lt;= 0) {
     var bullet = instance_create(x + 8 * facing, y + 11, obj_bullet);
     bullet.image_xscale = facing;
     canshoot = floor(fire_rate);
-    reset_fire = 30;
+    reset_fire = 15;
     fire_rate += 0.25;
     flash = 8;
 }
