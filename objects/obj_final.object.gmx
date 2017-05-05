@@ -98,7 +98,12 @@ draw_set_font(fnt_title);
 draw_text_transformed(room_width / 2, room_height / 3, "The End", text_size, text_size, 0);
 
 draw_set_font(fnt_info);
-draw_text_transformed(room_width / 2, room_height * (2 / 3), "Press 'A' to return to title", text_size, text_size, 0);
+
+var return_text = "A";
+if (global.gamepad)
+    return_text = "the A Button";
+
+draw_text_transformed(room_width / 2, room_height * (2 / 3), "Press " + return_text + " to return to title", text_size, text_size, 0);
 </string>
           </argument>
         </arguments>

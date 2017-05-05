@@ -97,13 +97,30 @@ draw_set_font(fnt_title);
 draw_text_transformed(room_width / 2, room_height / 5, "Controls", text_size, text_size, 0);
 
 draw_set_font(fnt_controls);
-draw_text_transformed(room_width / 2, room_height / 2 - 45, "Hold 'Left'/'Right' to move", text_size, text_size, 0);
-draw_text_transformed(room_width / 2, room_height / 2 - 15, "Press 'A' to jump", text_size, text_size, 0);
-draw_text_transformed(room_width / 2, room_height / 2 + 15, "Hold 'A' in the air to pull yourself upwards#WARNING: Doing this too much will snap the cable and kill you", text_size, text_size, 0);
-draw_text_transformed(room_width / 2, room_height / 2 + 45, "Hold 'S' to shoot", text_size, text_size, 0);
+
+var move_text = "Left/Right";
+var jump_text = "A";
+var pull_text = "A";
+var shoot_text = "S";
+if (global.gamepad) {
+    var move_text = "the Left Stick";
+    var jump_text = "the A Button";
+    var pull_text = "the A Button";
+    var shoot_text = "the X Button";
+}
+
+draw_text_transformed(room_width / 2, room_height / 2 - 45, "Use " + move_text + " to move", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 2 - 15, "Press " + jump_text + " to jump", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 2 + 15, "Hold " + pull_text + " in the air to pull yourself upwards#WARNING: Doing this too much will snap the cable and kill you", text_size, text_size, 0);
+draw_text_transformed(room_width / 2, room_height / 2 + 45, "Hold " + shoot_text + " to shoot", text_size, text_size, 0);
 
 draw_set_font(fnt_info);
-draw_text_transformed(room_width / 2, room_height * (4 / 5), "Press 'A' to continue", text_size, text_size, 0);
+
+var continue_text = "A";
+if (global.gamepad)
+    continue_text = "the A Button";
+
+draw_text_transformed(room_width / 2, room_height * (4 / 5), "Press " + continue_text + " to continue", text_size, text_size, 0);
 </string>
           </argument>
         </arguments>

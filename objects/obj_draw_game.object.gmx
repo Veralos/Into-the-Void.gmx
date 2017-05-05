@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.stick_right = false;
+            <string>global.gamepad = scr_check_gamepad(global.gamepad);
+
+global.stick_right = false;
 global.stick_left = false;
 
 var axis_lh = gamepad_axis_value(0, gp_axislh);
@@ -155,6 +157,7 @@ global.stick_left = false;
 global.stick_right = false;
 global.stick_up = false;
 global.stick_down = false;
+global.gamepad = gamepad_is_connected(0);
 
 room_goto_next();
 </string>

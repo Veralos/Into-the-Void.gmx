@@ -287,8 +287,15 @@ for (var i = 0; i &lt; ds_list_size(option_list); i++) {
 
 draw_set_font(fnt_controls);
 
-draw_text_transformed(room_width / 3, room_height - 16, "Select: 'Up'/'Down'", text_size, text_size, 0);
-draw_text_transformed(room_width * (2 / 3), room_height - 16, "Confirm: 'A'", text_size, text_size, 0);
+var select_text = "Up/Down";
+var confirm_text = "A";
+if (global.gamepad) {
+    select_text = "Left Stick";
+    confirm_text = "A Button";
+}
+
+draw_text_transformed(room_width / 3, room_height - 16, "Select: " + select_text, text_size, text_size, 0);
+draw_text_transformed(room_width * (2 / 3), room_height - 16, "Confirm: " + confirm_text, text_size, text_size, 0);
 </string>
           </argument>
         </arguments>
