@@ -79,7 +79,7 @@ if (split_x &gt; room_width)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>collapse_speed = 0.75;
+            <string>collapse_speed = 0;
 spool_x = 0;
 spool_anim = 0;
 bottom_level = room_height + 64;

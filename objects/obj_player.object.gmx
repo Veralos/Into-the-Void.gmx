@@ -118,12 +118,12 @@ var jump_released = false;
 var shoot_held = false;
 
 if (!scr_fading()) {
-    left_held = keyboard_check(vk_left) || gamepad_axis_value(0, gp_axislh) &lt; 0;
-    right_held = keyboard_check(vk_right) || gamepad_axis_value(0, gp_axislh) &gt; 0;
-    jump_held = keyboard_check(ord('A')) || gamepad_button_check(0, gp_face1);
-    jump_pressed = keyboard_check_pressed(ord('A')) || gamepad_button_check_pressed(0, gp_face1);
-    jump_released = keyboard_check_released(ord('A')) || gamepad_button_check_released(0, gp_face1);
-    shoot_held = keyboard_check(ord('S')) || gamepad_button_check(0, gp_face3);
+    left_held = keyboard_check(vk_left) || gamepad_axis_value(0, gp_axislh) &lt; 0 || gamepad_button_check(0, gp_padl);
+    right_held = keyboard_check(vk_right) || gamepad_axis_value(0, gp_axislh) &gt; 0 || gamepad_button_check(0, gp_padr);
+    jump_held = keyboard_check(ord('A')) || gamepad_button_check(0, gp_face1) || gamepad_button_check(0, gp_shoulderlb);
+    jump_pressed = keyboard_check_pressed(ord('A')) || gamepad_button_check_pressed(0, gp_face1) || gamepad_button_check_pressed(0, gp_shoulderlb);
+    jump_released = keyboard_check_released(ord('A')) || gamepad_button_check_released(0, gp_face1) || gamepad_button_check_released(0, gp_shoulderlb);
+    shoot_held = keyboard_check(ord('S')) || gamepad_button_check(0, gp_face3) || gamepad_button_check(0, gp_shoulderrb);
 }
 
 if (flash &gt; 0)
